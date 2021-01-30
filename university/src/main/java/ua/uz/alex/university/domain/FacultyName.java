@@ -1,3 +1,14 @@
+/**
+ * The Final project on "Java Developer" Course in LOGOS IT Academy
+ * University portal (Admissions Committee)
+ *
+ * Enum ua.uz.alex.university.domain.FacultyName  - domain layer
+ * names of faculties in university (as example threre almoust all faculties of Uzhhorod National University)
+ *
+ * @author Oleksandr Lukhanin
+ *
+ */
+
 package ua.uz.alex.university.domain;
 
 public enum FacultyName {

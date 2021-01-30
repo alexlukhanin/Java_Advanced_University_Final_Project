@@ -1,3 +1,14 @@
+/**
+ * The Final project on "Java Developer" Course in LOGOS IT Academy
+ * University portal (Admissions Committee)
+ *
+ * Class ua.uz.alex.university.domain.User  - domain layer
+ * names of subjects
+ *
+ * @author Oleksandr Lukhanin
+ *
+ */
+
 package ua.uz.alex.university.domain;
 
 public class User {
