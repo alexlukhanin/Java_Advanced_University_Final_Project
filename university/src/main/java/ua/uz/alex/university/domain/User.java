@@ -26,6 +26,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
+
+    @Transient
     private String passwordConfirm;
 
     @Enumerated(EnumType.STRING)

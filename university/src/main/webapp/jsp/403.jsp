@@ -15,7 +15,7 @@
 				<input type="submit" value="Sign in as different user"/>
 				<input type="hidden" name="${_csrf.parameterName}" value ="${_csrf.token}"/>
 			</form>
-	
+
 	</div>
 </body>
 </html>

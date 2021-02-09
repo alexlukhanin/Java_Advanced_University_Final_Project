@@ -14,7 +14,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "faculty")
+@Table(name = "faculties")
 public class Faculty {
 
     @Id
@@ -22,6 +22,8 @@ public class Faculty {
     private Integer id;
 
     private FacultyName name;
+
+    @Column(name = "number_of_students")
     private Integer numberOfStudents;
 
     @ElementCollection
