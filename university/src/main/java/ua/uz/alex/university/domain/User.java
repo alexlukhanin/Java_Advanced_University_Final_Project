@@ -11,7 +11,6 @@
 
 package ua.uz.alex.university.domain;
 
-
 import javax.persistence.*;
 
 @Entity

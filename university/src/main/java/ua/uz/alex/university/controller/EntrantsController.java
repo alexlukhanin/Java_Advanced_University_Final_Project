@@ -9,7 +9,6 @@
  *
  */
 
-
 package ua.uz.alex.university.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,4 @@ public class EntrantsController {
         return new ModelAndView("showRegistrations", "facultyRegistrations",
                 registrationForFacultyService.showAllEntrants());
     }
-
-
 }
