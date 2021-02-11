@@ -50,8 +50,8 @@
 				<c:forEach items="${facultyRegistrations}" var="currentRegistration">
 					<tr>
 						<td>${currentRegistration.faculty.name}</td>
-						<td>${currentRegistration.user.name}</td>
-						<td>${currentRegistration.user.surname}</td>
+						<td>${currentRegistration.user.firstName}</td>
+						<td>${currentRegistration.user.lastName}</td>
 						<td>${currentRegistration.user.email}</td>
 						<td>${currentRegistration.faculty.subjects}<br>${currentRegistration.marks}</td>
 					</tr>

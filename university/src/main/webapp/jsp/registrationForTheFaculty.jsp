@@ -23,7 +23,7 @@
 		<!-- Page Content -->
 		<div style="margin-left: 10%">
 			<div class="w3-container w3-teal">
-				<h1>Register for the faculty</h1>
+				<h1>Register for the faculty of ${facultyRegistration.faculty.name}</h1>
 			</div>
 
 			<div class="w3-container">
@@ -32,15 +32,14 @@
 						   modelAttribute="facultyRegistration">
 					<table>
 						<tr>
-							<th>To register for the faculty you have to fill marks from
-								such subjects:</th>
+							<th>Please, fill marks from such subjects to register:</th>
 						</tr>
 
 						<c:forEach items="${facultyRegistration.faculty.subjects}"
 								   var="currentSubject">
 							<tr>
 								<td><form:label path="marks">${currentSubjects}</form:label></td>
-								<td><form:input path="marks" /></td>
+								<td><form:input path="marks" /> Test text</td>
 							</tr>
 						</c:forEach>
 

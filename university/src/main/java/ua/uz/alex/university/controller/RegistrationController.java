@@ -47,7 +47,7 @@ public class RegistrationController {
         RegistrationForFaculty registrationForFaculty = new RegistrationForFaculty();
         registrationForFaculty.setFaculty(faculty);
         registrationForFaculty.setUser(user);
-        ModelAndView modelAndView = new ModelAndView("registerForFaculty");
+        ModelAndView modelAndView = new ModelAndView("registrationForTheFaculty");
         modelAndView.addObject("facultyRegistration", registrationForFaculty);
         return modelAndView;
     }
