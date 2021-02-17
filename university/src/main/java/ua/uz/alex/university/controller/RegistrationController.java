@@ -40,7 +40,7 @@ public class RegistrationController {
     @Autowired
     private RegistrationForFacultyService registrationForFacultyService;
 
-    @GetMapping("/register-for-faculty")
+    @GetMapping("/faculty_reg")
     public ModelAndView registerForFaculty(@RequestParam("facultyId") Integer id, @RequestParam("email") String email) {
         Faculty faculty = facultyService.findById(id);
         User user = userService.findByEmail(email);
@@ -52,7 +52,7 @@ public class RegistrationController {
         return modelAndView;
     }
 
-    @PostMapping("/register-for-faculty")
+    @PostMapping("/faculty_reg")
     public ModelAndView addRegistration(@Valid @ModelAttribute("facultyRegistration") RegistrationForFaculty registrationForFaculty,
                                         BindingResult bindingResult) {
         Faculty faculty = facultyService.findById(registrationForFaculty.getFacultyId());

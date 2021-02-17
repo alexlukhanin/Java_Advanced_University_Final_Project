@@ -25,6 +25,7 @@
 		<a href="/home" class="w3-bar-item w3-button">Home</a> <a
 			href="/show-entrants" class="w3-bar-item w3-button">Show all
 			entrants</a>
+		<a onclick="document.forms['logoutForm'].submit()" class="w3-bar-item w3-button">Logout</a>
 	</div>
 
 	<!-- Page Content -->

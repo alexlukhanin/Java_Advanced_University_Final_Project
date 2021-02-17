@@ -28,6 +28,7 @@
         <h3 class="w3-bar-item">Menu</h3>
         <a href="/home" class="w3-bar-item w3-button">Home</a>
         <a href="/show-entrants" class="w3-bar-item w3-button">All entrants</a>
+        <a onclick="document.forms['logoutForm'].submit()" class="w3-bar-item w3-button">Logout</a>
     </div>
 
 
@@ -46,8 +47,8 @@
                 </form>
 
                 <h2>
-                    Welcome ${pageContext.request.userPrincipal.name} | <a
-                        onclick="document.forms['logoutForm'].submit()">Logout</a>
+                    Welcome ${pageContext.request.userPrincipal.name} | <button
+                        onclick="document.forms['logoutForm'].submit()">Logout</button>
                 </h2>
 
             </c:if>
@@ -56,9 +57,9 @@
                     <c:forEach items="${faculties}" var="currentFaculty">
 
                         <div class="w3-card-4" style="width: 20%; margin: 2%">
-                            <img
+                           <%-- <img
                                     src="https://www.wegagen.com/wp-content/themes/linstar23/assets/images/default-275x220.jpg"
-                                    alt="Faculty logo" style="width: 100%">
+                                    alt="Faculty logo" style="width: 100%">--%>
                             <div class="w3-container w3-center">
                                 <h3>${currentFaculty.name}</h3>
                                 <p>Number of students recruited:
@@ -66,7 +67,7 @@
                                 <p>Necessary subjects for entry: ${currentFaculty.subjects}</p>
                             </div>
                             <a class="w3-button w3-block w3-dark-grey"
-                               href="${contextPath}/register-for-faculty?facultyId=${currentFaculty.id}&email=${pageContext.request.userPrincipal.name}">
+                               href="${contextPath}/faculty_reg?facultyId=${currentFaculty.id}&email=${pageContext.request.userPrincipal.name}">
                                 Register</a>
 
                         </div>

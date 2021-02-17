@@ -18,6 +18,7 @@
 			<h3 class="w3-bar-item">Menu</h3>
 			<a href="/home" class="w3-bar-item w3-button">Home</a>
 			<a href="/show-entrants" class="w3-bar-item w3-button">All entrants</a>
+			<a onclick="document.forms['logoutForm'].submit()" class="w3-bar-item w3-button">Logout</a>
 		</div>
 
 		<!-- Page Content -->
@@ -28,7 +29,7 @@
 
 			<div class="w3-container">
 
-				<form:form method="POST" action="${contextPath}/register-for-faculty"
+				<form:form method="POST" action="${contextPath}/faculty_reg"
 						   modelAttribute="facultyRegistration">
 					<table>
 						<tr>
