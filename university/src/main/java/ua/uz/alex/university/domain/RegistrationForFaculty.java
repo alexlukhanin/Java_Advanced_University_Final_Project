@@ -9,7 +9,11 @@
 
 package ua.uz.alex.university.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 
@@ -32,6 +36,12 @@ public class RegistrationForFaculty {
     @ElementCollection
     private List<Integer> marks;
 
+    @Column(name = "upload_file")
+    private String uploadFile;
+
+    @Column(name = "marks_sum")
+    private Integer marksSum;
+
     @Transient
     private int facultyId;
 
@@ -41,17 +51,38 @@ public class RegistrationForFaculty {
     public RegistrationForFaculty() {
     }
 
-    public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks) {
+    public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks, MultipartFile file) throws IOException {
         this.faculty = faculty;
         this.user = user;
         this.marks = marks;
+        this.uploadFile = Base64.getEncoder().encodeToString(file.getBytes());
+        this.marksSum = marks.stream().reduce(0, Integer::sum);
     }
 
-    public RegistrationForFaculty(Integer id, Faculty faculty, User user, List<Integer> marks) {
+    public RegistrationForFaculty(Integer id, Faculty faculty, User user, List<Integer> marks, MultipartFile file) throws IOException {
         this.id = id;
         this.faculty = faculty;
         this.user = user;
         this.marks = marks;
+        this.uploadFile = Base64.getEncoder().encodeToString(file.getBytes());
+        this.marksSum = marks.stream().reduce(0, Integer::sum);
+    }
+
+
+    public String getUploadFile() {
+        return uploadFile;
+    }
+
+    public void setUploadFile(String uploadFile) {
+        this.uploadFile = uploadFile;
+    }
+
+    public Integer getMarksSum() {
+        return marksSum;
+    }
+
+    public void setMarksSum(Integer marksSum) {
+        this.marksSum = marksSum;
     }
 
     public Integer getId() {
