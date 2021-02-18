@@ -12,7 +12,6 @@ package ua.uz.alex.university.domain;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
@@ -37,11 +36,11 @@ public class RegistrationForFaculty {
     @ElementCollection
     private List<Integer> marks;
 
-    @Column(name = "upload_file1")
-    private String uploadFile1;
+    @Column(name = "upload_photo")
+    private String uploadPhoto;
 
-    @Column(name = "upload_file2")
-    private String uploadFile2;
+    @Column(name = "upload_document")
+    private String uploadDocument;
 
     @Column(name = "marks_sum")
     private Integer marksSum;
@@ -55,39 +54,39 @@ public class RegistrationForFaculty {
     public RegistrationForFaculty() {
     }
 
-    public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks, MultipartFile file1, MultipartFile file2) throws IOException {
+    public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks, MultipartFile filePhoto, MultipartFile fileDocument) throws IOException {
         this.faculty = faculty;
         this.user = user;
         this.marks = marks;
-        this.uploadFile1 = Base64.getEncoder().encodeToString(file1.getBytes());
-        this.uploadFile2 = Base64.getEncoder().encodeToString(file2.getBytes());
+        this.uploadPhoto = Base64.getEncoder().encodeToString(filePhoto.getBytes());
+        this.uploadDocument = Base64.getEncoder().encodeToString(fileDocument.getBytes());
         this.marksSum = marks.stream().reduce(0, Integer::sum);
     }
 
-    public RegistrationForFaculty(Integer id, Faculty faculty, User user, List<Integer> marks, MultipartFile file1, MultipartFile file2) throws IOException {
+    public RegistrationForFaculty(Integer id, Faculty faculty, User user, List<Integer> marks, MultipartFile filePhoto, MultipartFile fileDocument) throws IOException {
         this.id = id;
         this.faculty = faculty;
         this.user = user;
         this.marks = marks;
-        this.uploadFile1 = Base64.getEncoder().encodeToString(file1.getBytes());
-        this.uploadFile2 = Base64.getEncoder().encodeToString(file2.getBytes());
+        this.uploadPhoto = Base64.getEncoder().encodeToString(filePhoto.getBytes());
+        this.uploadDocument = Base64.getEncoder().encodeToString(fileDocument.getBytes());
         this.marksSum = marks.stream().reduce(0, Integer::sum);
     }
 
-    public String getUploadFile2() {
-        return uploadFile2;
+    public String getUploadDocument() {
+        return uploadDocument;
     }
 
-    public void setUploadFile2(String uploadFile2) {
-        this.uploadFile2 = uploadFile2;
+    public void setUploadDocument(String uploadFile2) {
+        this.uploadDocument = uploadFile2;
     }
 
-    public String getUploadFile1() {
-        return uploadFile1;
+    public String getUploadPhoto() {
+        return uploadPhoto;
     }
 
-    public void setUploadFile1(String uploadFile) {
-        this.uploadFile1 = uploadFile;
+    public void setUploadPhoto(String uploadFile) {
+        this.uploadPhoto = uploadFile;
     }
 
     public Integer getMarksSum() {

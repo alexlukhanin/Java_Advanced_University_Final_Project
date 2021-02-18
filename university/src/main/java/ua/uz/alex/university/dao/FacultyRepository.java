@@ -18,3 +18,5 @@ import ua.uz.alex.university.domain.Faculty;
 public interface FacultyRepository extends JpaRepository <Faculty, Integer> {
 
 }
+
+

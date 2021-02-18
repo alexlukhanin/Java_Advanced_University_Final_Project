@@ -28,13 +28,14 @@
         <h3 class="w3-bar-item">Menu</h3>
         <a href="/home" class="w3-bar-item w3-button">Home</a>
         <a href="/show-entrants" class="w3-bar-item w3-button">All entrants</a>
-        <a onclick="document.forms['logoutForm'].submit()" class="w3-bar-item w3-button">Logout</a>
+        <a href="/admin_panel" class="w3-bar-item w3-button">Admin Panel</a>
+        <a href="/login?logout" class="w3-bar-item w3-button">Logout</a>
     </div>
 
 
     <!-- Page Content -->
     <div style="margin-left: 10%">
-        <div class="w3-container w3-teal"  >
+        <div class="w3-container w3-orange w3-center"  >
             <h1>Faculties</h1>
         </div>
 
@@ -46,10 +47,10 @@
                            value="${_csrf.token}" />
                 </form>
 
-                <h2>
-                    Welcome ${pageContext.request.userPrincipal.name} | <button
-                        onclick="document.forms['logoutForm'].submit()">Logout</button>
-                </h2>
+                <div class="w3-container" style="height: 50px; width: 100%">
+                    <h4>  Welcome ${pageContext.request.userPrincipal.name} </h4>
+                </div>
+
 
             </c:if>
             <div class="w3-container" style="display: flex; flex-wrap: wrap">

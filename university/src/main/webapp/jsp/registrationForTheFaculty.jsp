@@ -18,12 +18,13 @@
 			<h3 class="w3-bar-item">Menu</h3>
 			<a href="/home" class="w3-bar-item w3-button">Home</a>
 			<a href="/show-entrants" class="w3-bar-item w3-button">All entrants</a>
-			<a onclick="document.forms['logoutForm'].submit()" class="w3-bar-item w3-button">Logout</a>
+			<a href="/admin_panel" class="w3-bar-item w3-button">Admin Panel</a>
+			<a href="/login?logout" class="w3-bar-item w3-button">Logout</a>
 		</div>
 
 		<!-- Page Content -->
 		<div style="margin-left: 10%">
-			<div class="w3-container w3-teal">
+			<div class="w3-container w3-orange w3-center">
 				<h1>Register for the faculty of ${facultyRegistration.faculty.name}</h1>
 			</div>
 

@@ -22,15 +22,15 @@
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
 		<h3 class="w3-bar-item">Menu</h3>
-		<a href="/home" class="w3-bar-item w3-button">Home</a> <a
-			href="/show-entrants" class="w3-bar-item w3-button">Show all
-			entrants</a>
-		<a onclick="document.forms['logoutForm'].submit()" class="w3-bar-item w3-button">Logout</a>
+		<a href="/home" class="w3-bar-item w3-button">Home</a>
+		<a href="/show-entrants" class="w3-bar-item w3-button">Show all entrants</a>
+		<a href="/admin_panel" class="w3-bar-item w3-button">Admin Panel</a>
+		<a href="/login?logout" class="w3-bar-item w3-button">Logout</a>
 	</div>
 
 	<!-- Page Content -->
 	<div class="container mt-3" style="margin-left: 10%">
-		<div class="w3-container w3-teal">
+		<div class="w3-container w3-orange w3-center">
 			<h1>Registered entrants</h1>
 		</div>
 
@@ -64,15 +64,15 @@
 	</div>
 
 	<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+		$(document).ready(function () {
+			$("#myInput").on("keyup", function () {
+				var value = $(this).val().toLowerCase();
+				$("#myTable tr").filter(function () {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+		});
+	</script>
 
 </body>
 </html>
