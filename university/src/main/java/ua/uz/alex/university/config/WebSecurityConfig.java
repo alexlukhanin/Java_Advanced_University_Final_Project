@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers("/show-entrants").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')").
                 antMatchers("/faculty_reg").access("hasRole('ROLE_USER')").
                 antMatchers("/admin_panel").access("hasRole('ROLE_ADMIN')").
+                antMatchers("/add_faculty").access("hasRole('ROLE_ADMIN')").
                 antMatchers("/logout").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')").
                 anyRequest().permitAll().and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/home").usernameParameter("email").passwordParameter("password").and().logout()

@@ -37,9 +37,11 @@ public class RegistrationForFaculty {
     private List<Integer> marks;
 
     @Column(name = "upload_photo")
+    @Lob
     private String uploadPhoto;
 
     @Column(name = "upload_document")
+    @Lob
     private String uploadDocument;
 
     @Column(name = "marks_sum")

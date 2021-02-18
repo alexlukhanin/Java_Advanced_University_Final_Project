@@ -34,4 +34,6 @@ public class FacultyService {
     public Faculty findById(Integer id) {
         return facultyRepository.findById(id).get();
     }
+
+
 }

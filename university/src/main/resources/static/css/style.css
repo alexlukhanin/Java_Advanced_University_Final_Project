@@ -1,0 +1,20 @@
+
+.column_wrapper label {
+    color: darkred;
+    font-weight: bold;
+}
+
+.column_wrapper input {
+    margin-bottom: 5px;
+}
+
+
+.column_wrapper select {
+    height: 30px;
+    width: 208px;
+}
+
+.admin_panel h2 {
+    font-weight: bold;
+    color: darkred;
+}

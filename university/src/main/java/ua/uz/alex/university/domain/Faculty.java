@@ -10,36 +10,54 @@
 package ua.uz.alex.university.domain;
 
 
+import org.apache.logging.log4j.util.Strings;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "faculties")
+@Table(name = "faculty")
 public class Faculty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private FacultyName name;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "number_of_students")
+    @Column(name = "numberOfStudents")
     private Integer numberOfStudents;
 
-    @ElementCollection
+    @Column(name = "logo")
+    @Lob
+    private String logo;
+
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="faculty_subject",
+            joinColumns=@JoinColumn(name="faculty_id"),
+            inverseJoinColumns=@JoinColumn(name="subject_id")
+    )
     private List<Subject> subjects;
 
     public Faculty() {
     }
 
-    public Faculty(Integer id, FacultyName name, Integer numberOfStudents, List<Subject> subjects) {
+    public Faculty(Integer id, String name, Integer numberOfStudents, List<Subject> subjects) {
         this.id = id;
         this.name = name;
         this.numberOfStudents = numberOfStudents;
         this.subjects = subjects;
     }
 
-    public Faculty(FacultyName name, Integer numberOfStudents, List<Subject> subjects) {
+    public Faculty(String name, Integer numberOfStudents, List<Subject> subjects) {
         this.name = name;
         this.numberOfStudents = numberOfStudents;
         this.subjects = subjects;
@@ -53,11 +71,11 @@ public class Faculty {
         this.id = id;
     }
 
-    public FacultyName getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(FacultyName name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -67,6 +85,14 @@ public class Faculty {
 
     public void setNumberOfStudents(Integer numberOfStudents) {
         this.numberOfStudents = numberOfStudents;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public List<Subject> getSubjects() {
@@ -85,9 +111,10 @@ public class Faculty {
         Faculty faculty = (Faculty) o;
 
         if (id != null ? !id.equals(faculty.id) : faculty.id != null) return false;
-        if (name != faculty.name) return false;
+        if (name != null ? !name.equals(faculty.name) : faculty.name != null) return false;
         if (numberOfStudents != null ? !numberOfStudents.equals(faculty.numberOfStudents) : faculty.numberOfStudents != null)
             return false;
+        if (logo != null ? !logo.equals(faculty.logo) : faculty.logo != null) return false;
         return subjects != null ? subjects.equals(faculty.subjects) : faculty.subjects == null;
     }
 
@@ -96,6 +123,7 @@ public class Faculty {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (numberOfStudents != null ? numberOfStudents.hashCode() : 0);
+        result = 31 * result + (logo != null ? logo.hashCode() : 0);
         result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
         return result;
     }
@@ -104,7 +132,7 @@ public class Faculty {
     public String toString() {
         return "Faculty{" +
                 "id=" + id +
-                ", name=" + name +
+                ", name='" + name + '\'' +
                 ", numberOfStudents=" + numberOfStudents +
                 ", subjects=" + subjects +
                 '}';

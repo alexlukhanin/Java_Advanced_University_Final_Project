@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -18,13 +18,10 @@
     <title>Admin panel</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-
-
 
 </head>
 <body>
@@ -40,7 +37,6 @@
 <%--        <a onclick="document.forms['logoutForm'].submit()" class="w3-bar-item w3-button">Logout</a>--%>
     </div>
 
-
     <!-- Page Content -->
     <div style="margin-left: 10%">
         <div class="w3-container w3-red w3-center"  >
@@ -54,22 +50,42 @@
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}" />
                 </form>
-
-                <div class="w3-container" style="height: 50px; width: 100%">
-                    <h4>  Welcome, administrator  ${pageContext.request.userPrincipal.name} </h4>
-                </div>
             </c:if>
 
 
-            <div class="w3-container" >
-                    <form method="POST" action="${contextPath}/add_faculty" >
-                        <h4>Add new Faculty</h4>
-                        <label for="faculty_name">Faculty name</label><br>
-                        <input type="text" id="faculty_name" name="faculty_name">
-                        <input type="submit" value="Submit">
-                    </form>
+            <div class="w3-container admin_panel">
+                <h2>Add new Faculty</h2>
+                    <form:form method="POST" action="${contextPath}/add_faculty" enctype="multipart/form-data">
+
+                        <div class="column_wrapper" style="display: flex; flex-wrap: wrap">
+                            <div class="column1" style="margin: 0px 20px 5px 20px">
+                                <label for="facultyName">Faculty name</label><br>
+                                <input type="text" id="facultyName" name="facultyName"><br>
+                                <label for="numberOfStudents">Number of students</label><br>
+                                <input type="number" id="numberOfStudents" name="numberOfStudents" value="1"><br>
+                                <label for="facultyLogo">Faculty logo</label><br>
+                                <input type="file" id="facultyLogo" name="facultyLogo"><br>
+                            </div>
+                            <div class="column2" style="margin: 0px 20px 5px 20px">
+                                <label for="firstSubject">First Subject:</label><br>
+                                <input type="text" id="firstSubject" name="firstSubject" value="Ukrainian" readonly><br>
+                                <label for="secondSubject">Second Subject:</label><br>
+                                <input type="text" id="secondSubject" name="secondSubject" value="Mathematics" readonly><br>
+                                <label for="thirdSubject">Third Subject:</label><br>
+<%--                                <input type="text" id="third_subject" name="third_subject">--%>
+                                <select name="thirdSubject" id="thirdSubject">
+                                    <option value="English">English</option>
+                                    <option value="Biology">Biology</option>
+                                    <option value="History">History</option>
+                                    <option value="Physics">Physics</option>
+                                    <option value="Chemistry">Chemistry</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="submit" value="Submit" style="margin-left: 20px; color: white; width: 250px; background-color: darkred">
+                    </form:form>
                 <br>
-                <h4>List of the Faculties: </h4>
+                <h2>List of the Faculties: </h2>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -82,7 +98,7 @@
                     </thead>
                     <tbody id="myTable">
 
-                    <c:forEach items="${facultyRegistrations}" var="currentRegistration">
+                  <%--  <c:forEach items="${facultyRegistrations}" var="currentRegistration">
                         <tr>
                             <td>${currentRegistration.faculty.name}</td>
                             <td>${currentRegistration.user.firstName}</td>
@@ -90,7 +106,7 @@
                             <td>${currentRegistration.user.email}</td>
                             <td>${currentRegistration.faculty.subjects}<br>${currentRegistration.marks}</td>
                         </tr>
-                    </c:forEach>
+                    </c:forEach>--%>
 
                     </tbody>
                 </table>
