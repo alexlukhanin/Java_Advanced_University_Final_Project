@@ -51,8 +51,8 @@
                     <h4>  Welcome ${pageContext.request.userPrincipal.name} </h4>
                 </div>
 
-
             </c:if>
+
             <div class="w3-container" style="display: flex; flex-wrap: wrap">
                 <c:if test="${not empty faculties}">
                     <c:forEach items="${faculties}" var="currentFaculty">

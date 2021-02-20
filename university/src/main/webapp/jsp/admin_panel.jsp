@@ -17,11 +17,15 @@
 
     <title>Admin panel</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -92,21 +96,25 @@
                         <th>Faculty name</th>
                         <th>Number of Students</th>
                         <th>Subjects</th>
-                        <th>Email</th>
-                        <th>Marks</th>
+                        <th>Logo</th>
+                        <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody id="myTable">
+                    <c:if test="${not empty faculties}">
+                        <c:forEach items="${faculties}" var="currentFaculty">
+                            <tr>
+                                <td>${currentFaculty.name}</td>
+                                <td>${currentFaculty.numberOfStudents}</td>
+                                <td>${currentFaculty.subjects}</td>
+                                <td>$ <img
+                                        src="data:image/jpg;base64,${currentFaculty.logo}"
+                                        alt="Faculty logo" style="width: 100%"></td>
+                                <td> <a href="#">Edit</a>  <br><a href="#">Delete</a> </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
 
-                  <%--  <c:forEach items="${facultyRegistrations}" var="currentRegistration">
-                        <tr>
-                            <td>${currentRegistration.faculty.name}</td>
-                            <td>${currentRegistration.user.firstName}</td>
-                            <td>${currentRegistration.user.lastName}</td>
-                            <td>${currentRegistration.user.email}</td>
-                            <td>${currentRegistration.faculty.subjects}<br>${currentRegistration.marks}</td>
-                        </tr>
-                    </c:forEach>--%>
 
                     </tbody>
                 </table>
@@ -116,13 +124,17 @@
 
 
 <!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-<script
-        src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+
 </body>
 </html>
