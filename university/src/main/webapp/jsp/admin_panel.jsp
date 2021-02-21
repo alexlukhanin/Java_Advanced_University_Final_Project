@@ -107,9 +107,9 @@
                                 <td>${currentFaculty.name}</td>
                                 <td>${currentFaculty.numberOfStudents}</td>
                                 <td>${currentFaculty.subjects}</td>
-                                <td>$ <img
-                                        src="data:image/jpg;base64,${currentFaculty.logo}"
-                                        alt="Faculty logo" style="width: 100%"></td>
+                                <td> <img
+                                        src="${currentFaculty.logoUrl}"
+                                        alt="Faculty logo" style="width: 100px"></td>
                                 <td> <a href="#">Edit</a>  <br><a href="#">Delete</a> </td>
                             </tr>
                         </c:forEach>

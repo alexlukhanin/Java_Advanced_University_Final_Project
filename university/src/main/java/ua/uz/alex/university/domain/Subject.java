@@ -25,14 +25,7 @@ public class Subject {
     @Column
     private String name;
 
-    @ManyToMany(fetch=FetchType.LAZY,
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name="faculty_subject",
-            joinColumns=@JoinColumn(name="subject_id"),
-            inverseJoinColumns=@JoinColumn(name="faculty_id")
-    )
+    @ManyToMany()
     private List<Faculty> faculties;
 
     public Subject() {

@@ -1,0 +1,64 @@
+/**
+ * The Final project on "Java Developer" Course in LOGOS IT Academy
+ * University portal (Admissions Committee)
+ * <p>
+ * Interface ua.uz.alex.university.mapper.FacultyDtoMapper  - dto layer
+ *
+ * @author Oleksandr Lukhanin
+ */
+
+
+package ua.uz.alex.university.mapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.MultipartFile;
+import ua.uz.alex.university.dao.SubjectRepository;
+import ua.uz.alex.university.domain.Faculty;
+import ua.uz.alex.university.domain.Subject;
+import ua.uz.alex.university.service.FileService;
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Controller
+public class FacultyDtoMapper {
+
+    @Autowired
+    private SubjectRepository subjectRepository;
+    @Autowired
+    private FileService fileService;
+
+    public Faculty createEntity(MultipartFile file,
+                                String name,
+                                Integer numberOfStudents,
+                                List<Subject> subjects) throws IOException {
+
+        Faculty faculty = new Faculty();
+        List<String> collect = subjects.stream().map(subject -> subject.getName()).collect(Collectors.toList());
+        List<Subject> allByNameLike = subjectRepository.getAllByNameIn(collect);
+        mapSubjects(subjects , allByNameLike);
+        faculty.setName(name);
+        faculty.setNumberOfStudents(numberOfStudents);
+        faculty.setLogoUrl(fileService.saveFile(file , faculty.getName()));
+        faculty.setSubjects(subjects);
+        faculty.setLogo(Base64.getEncoder().encodeToString(file.getBytes()));
+        return faculty;
+    }
+
+    private void mapSubjects(List<Subject> needSubjects , List<Subject> existSubjects){
+
+        for (Subject needSubject : needSubjects) {
+            for (Subject existSubject : existSubjects) {
+                if (needSubject.getName().equalsIgnoreCase(existSubject.getName())){
+                    needSubject.setId(existSubject.getId());
+                }
+            }
+        }
+
+    }
+
+
+}

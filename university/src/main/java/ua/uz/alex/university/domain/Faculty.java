@@ -37,9 +37,9 @@ public class Faculty {
     @Lob
     private String logo;
 
-    @ManyToMany(fetch=FetchType.LAZY,
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+    private String logoUrl;
+
+    @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
             name="faculty_subject",
             joinColumns=@JoinColumn(name="faculty_id"),
@@ -61,6 +61,14 @@ public class Faculty {
         this.name = name;
         this.numberOfStudents = numberOfStudents;
         this.subjects = subjects;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
     public Integer getId() {

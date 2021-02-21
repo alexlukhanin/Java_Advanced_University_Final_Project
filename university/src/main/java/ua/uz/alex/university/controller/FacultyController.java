@@ -3,12 +3,16 @@ package ua.uz.alex.university.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import ua.uz.alex.university.dao.SubjectRepository;
+import ua.uz.alex.university.domain.Faculty;
 import ua.uz.alex.university.domain.Subject;
-import ua.uz.alex.university.dto.FacultyDtoHelper;
+import ua.uz.alex.university.mapper.FacultyDtoMapper;
 import ua.uz.alex.university.service.FacultyService;
 
 import java.io.IOException;
@@ -20,6 +24,12 @@ public class FacultyController {
 
     @Autowired
     FacultyService facultyService;
+
+    @Autowired
+    private SubjectRepository subjectRepository;
+
+    @Autowired
+    private FacultyDtoMapper facultyDtoMapper;
 
     @PostMapping("/add_faculty")
     public ModelAndView createFaculty (
@@ -36,11 +46,17 @@ public class FacultyController {
         subjects.add(new Subject(secondSubject));
         subjects.add(new Subject(thirdSubject));
 
-        facultyService.save(FacultyDtoHelper.createEntity(facultyLogo, facultyName,
+        facultyService.save(facultyDtoMapper.createEntity(facultyLogo, facultyName,
                 numberOfStudents, subjects));
-       // System.out.println("add_faculty is Done ");
-        //subjects.stream().forEach(System.out::println);
         return new ModelAndView("redirect:/admin_panel");
+    }
+
+    @GetMapping("/admin_panel")
+    public String getAdminPanel(Model model){
+        List<Faculty> allFaculties = facultyService.getAllFaculties();
+        model.addAttribute("faculties" , allFaculties);
+        model.addAttribute("subjects" , subjectRepository.findAll());
+        return "admin_panel";
     }
 
 
