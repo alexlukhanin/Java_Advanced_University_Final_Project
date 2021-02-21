@@ -44,7 +44,6 @@ public class FacultyDtoMapper {
         faculty.setNumberOfStudents(numberOfStudents);
         faculty.setLogoUrl(fileService.saveFile(file , faculty.getName()));
         faculty.setSubjects(subjects);
-        faculty.setLogo(Base64.getEncoder().encodeToString(file.getBytes()));
         return faculty;
     }
 

@@ -17,6 +17,7 @@ import javax.persistence.*;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -32,10 +33,6 @@ public class Faculty {
 
     @Column(name = "numberOfStudents")
     private Integer numberOfStudents;
-
-    @Column(name = "logo")
-    @Lob
-    private String logo;
 
     private String logoUrl;
 
@@ -95,13 +92,7 @@ public class Faculty {
         this.numberOfStudents = numberOfStudents;
     }
 
-    public String getLogo() {
-        return logo;
-    }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
 
     public List<Subject> getSubjects() {
         return subjects;
@@ -111,29 +102,22 @@ public class Faculty {
         this.subjects = subjects;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Faculty faculty = (Faculty) o;
-
-        if (id != null ? !id.equals(faculty.id) : faculty.id != null) return false;
-        if (name != null ? !name.equals(faculty.name) : faculty.name != null) return false;
-        if (numberOfStudents != null ? !numberOfStudents.equals(faculty.numberOfStudents) : faculty.numberOfStudents != null)
-            return false;
-        if (logo != null ? !logo.equals(faculty.logo) : faculty.logo != null) return false;
-        return subjects != null ? subjects.equals(faculty.subjects) : faculty.subjects == null;
+        return Objects.equals(id, faculty.id) &&
+                Objects.equals(name, faculty.name) &&
+                Objects.equals(numberOfStudents, faculty.numberOfStudents) &&
+                Objects.equals(logoUrl, faculty.logoUrl) &&
+                Objects.equals(subjects, faculty.subjects);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (numberOfStudents != null ? numberOfStudents.hashCode() : 0);
-        result = 31 * result + (logo != null ? logo.hashCode() : 0);
-        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, numberOfStudents, logoUrl, subjects);
     }
 
     @Override
