@@ -17,23 +17,8 @@ import ua.uz.alex.university.domain.Faculty;
 
 import java.util.List;
 
-@Service
-public class FacultyService {
-
-    @Autowired
-    private FacultyRepository facultyRepository;
-
-    public void save(Faculty faculty) {
-        facultyRepository.save(faculty);
-    }
-
-    public List<Faculty> getAllFaculties() {
-        return facultyRepository.findAll();
-    }
-
-    public Faculty findById(Integer id) {
-        return facultyRepository.findById(id).get();
-    }
-
-
+public interface FacultyService {
+    public void save(Faculty faculty);
+    public List<Faculty> getAllFaculties();
+    public Faculty findById(Integer id);
 }

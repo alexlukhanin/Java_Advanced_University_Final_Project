@@ -9,23 +9,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import java.util.UUID;
 
-@Component
-public class FileService {
 
-    public String saveFile(MultipartFile multipartFile , String path) throws IOException {
+public interface FileService {
 
-        String pathStartPart =  "src/main/webapp/";
-        String pathSecondPart = "imageDB/faculty/";
-        String pathToDB = pathSecondPart + path + "/" + new Date().getTime() + multipartFile.getOriginalFilename();
-        String filePathToFileSystem = pathStartPart + pathToDB;
-
-        Path target = Paths.get(filePathToFileSystem);
-        Files.createDirectories(target);
-        Files.copy(multipartFile.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
-        return pathToDB;
-    }
-
+    public String saveFile(MultipartFile multipartFile , String filename) throws IOException;
 
 }

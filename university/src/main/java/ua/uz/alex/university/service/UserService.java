@@ -17,24 +17,7 @@ import ua.uz.alex.university.dao.UserRepository;
 import ua.uz.alex.university.domain.User;
 import ua.uz.alex.university.domain.UserRole;
 
-@Service
-public class UserService{
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
-
-
-    public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
-        user.setRole(UserRole.ROLE_USER);
-        userRepository.save(user);
-    }
-
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email).get();
-    }
-
+public interface UserService{
+    public void save(User user) ;
+    public User findByEmail(String email);
 }

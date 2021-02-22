@@ -8,22 +8,8 @@ import ua.uz.alex.university.domain.Subject;
 import java.util.List;
 import java.util.Set;
 
-@Service
-public class SubjectService {
-
-    @Autowired
-    private SubjectRepository subjectRepository;
-
-    public void save(Subject subject) {
-        subjectRepository.save(subject);
-    }
-
-    public List<Subject> getAllFaculties() {
-        return subjectRepository.findAll();
-    }
-
-    public Subject findById(Integer id) {
-        return subjectRepository.findById(id).get();
-    }
-
+public interface SubjectService {
+    public void save(Subject subject);
+    public List<Subject> getAllFaculties();
+    public Subject findById(Integer id);
 }

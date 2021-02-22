@@ -17,18 +17,8 @@ import ua.uz.alex.university.domain.RegistrationForFaculty;
 
 import java.util.List;
 
-@Service
-public class RegistrationForFacultyService {
+public interface RegistrationForFacultyService {
 
-    @Autowired
-    private RegistrationForFacultyRepository registrationForFacultyRepository;
-
-    public void save(RegistrationForFaculty facultyRegistration) {
-        registrationForFacultyRepository.save(facultyRegistration);
-    }
-
-    public List<RegistrationForFaculty> showAllEntrants() {
-        return registrationForFacultyRepository.findAll();
-    }
-
+    public void save(RegistrationForFaculty facultyRegistration);
+    public List<RegistrationForFaculty> showAllEntrants();
 }
