@@ -23,46 +23,67 @@
 		</div>
 
 		<!-- Page Content -->
+
 		<div style="margin-left: 10%">
-			<div class="w3-container w3-orange w3-center">
-				<h1>Register for the faculty of ${facultyRegistration.faculty.name}</h1>
-			</div>
 
-			<div class="w3-container">
-
-				<form:form method="POST" action="${contextPath}/faculty_reg"
-						   modelAttribute="facultyRegistration">
-					<table>
-						<tr>
-							<th>Please, fill marks from such subjects to register:</th>
-						</tr>
-
-						<c:forEach items="${facultyRegistration.faculty.subjects}"
-								   var="currentSubject">
-							<tr>
-								<td><form:label path="marks">${currentSubjects}</form:label></td>
-								<td><form:input path="marks" /> Test text</td>
-							</tr>
-						</c:forEach>
-
-						<tr>
-							<td><form:input type="hidden" path="facultyId"
-											value="${facultyRegistration.faculty.id}" /></td>
-							<td><form:input type="hidden" path="email"
-											value="${facultyRegistration.user.email}" /></td>
-						</tr>
-						<tr>
-							<td><input type="submit" value="Register" /></td>
-						</tr>
-
-					</table>
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
+				<form id="logoutForm" method="POST" action="${contextPath}/logout">
 					<input type="hidden" name="${_csrf.parameterName}"
 						   value="${_csrf.token}" />
-				</form:form>
+				</form>
+
+			</c:if>
+
+			<div class="w3-container w3-orange w3-center">
+				<h1>Register for the faculty of ${registrationForFaculty.faculty.name}</h1>
 			</div>
+
+			<div class="w3-container admin_panel">
+				<h2>Registration form</h2>
+				<form:form method="POST" action="${contextPath}/faculty_reg" modelAttribute="registrationForFaculty" enctype="multipart/form-data">
+
+					<div class="column_wrapper" style="display: flex; flex-wrap: wrap">
+						<div class="column1" style="margin: 0px 20px 5px 20px">
+							<label > <strong>User email:</strong> </label>
+							<label >${pageContext.request.userPrincipal.name}</label><br>
+
+							<label > <strong>First name:</strong> </label>
+							<label >${currentUser.firstName}</label><br>
+
+							<label > <strong>Last name:</strong> </label>
+							<label >${currentUser.lastName}</label><br>
+
+							<label for="userPhoto"><strong>User photo</strong></label><br>
+							<input type="file" id="userPhoto" name="userPhoto" style="margin-top: 10px; margin-bottom: 10px"><br>
+							<label for="documentPhoto"><strong>User certificate scan image</strong></label><br>
+							<input type="file" id="documentPhoto" name="documentPhoto" style="margin-top: 10px; margin-bottom: 10px"><br>
+						</div>
+						<div class="column2" style="margin: 0px 20px 5px 20px">
+								<table>
+
+									<c:forEach items="${registrationForFaculty.faculty.subjects}" var="currentSubject">
+										<tr  style="height: 70px">
+											<td><form:label path="marks"><strong>The mark from subject  ${currentSubject}</strong> </form:label></td>
+											<td><form:input path="marks" /> </td>
+										</tr>
+
+									</c:forEach>
+									<tr>
+										<td><form:input type="hidden" path="facultyId"
+														value="${registrationForFaculty.faculty.id}" /></td>
+										<td><form:input type="hidden" path="email"
+														value="${registrationForFaculty.user.email}" /></td>
+									</tr>
+								</table>
+						</div>
+					</div>
+					<input type="submit" value="Register" style="margin-left: 20px; color: white; width: 250px;
+															margin-top: 10px; background-color: darkorange">
+				</form:form>
+				<br>
+			</div>
+
 		</div>
-
-
 
 	</div>
 	<!-- /container -->

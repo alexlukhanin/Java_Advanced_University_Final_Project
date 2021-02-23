@@ -110,7 +110,7 @@
                                 <td> <img
                                         src="${currentFaculty.logoUrl}"
                                         alt="Faculty logo" style="width: 100px"></td>
-                                <td> <a href="#">Edit</a>  <br><a href="#">Delete</a> </td>
+                                <td> <%--<a href="#">Edit</a>  <br>--%><a href="#">Delete</a> </td>
                             </tr>
                         </c:forEach>
                     </c:if>

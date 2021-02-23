@@ -44,6 +44,8 @@
 					<th>Last name</th>
 					<th>Email</th>
 					<th>Marks</th>
+					<th>Photo</th>
+					<th>Document</th>
 				</tr>
 			</thead>
 			<tbody id="myTable">
@@ -55,6 +57,13 @@
 						<td>${currentRegistration.user.lastName}</td>
 						<td>${currentRegistration.user.email}</td>
 						<td>${currentRegistration.faculty.subjects}<br>${currentRegistration.marks}</td>
+						<td><img
+								src="${currentRegistration.uploadPhoto}"
+								alt="uploadPhoto" style="width: 50px">
+						</td>
+						<td><img
+								src="${currentRegistration.uploadDocument}"
+								alt="uploadPhoto" style="width: 50px"></td>
 					</tr>
 				</c:forEach>
 

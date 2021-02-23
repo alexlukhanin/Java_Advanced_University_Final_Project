@@ -16,9 +16,10 @@ import org.springframework.stereotype.Service;
 import ua.uz.alex.university.dao.UserRepository;
 import ua.uz.alex.university.domain.User;
 import ua.uz.alex.university.domain.UserRole;
+import ua.uz.alex.university.service.UserService;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 

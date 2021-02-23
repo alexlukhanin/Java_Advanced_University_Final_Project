@@ -37,15 +37,10 @@ public class RegistrationForFaculty {
     private List<Integer> marks;
 
     @Column(name = "upload_photo")
-    @Lob
     private String uploadPhoto;
 
     @Column(name = "upload_document")
-    @Lob
     private String uploadDocument;
-
-    @Column(name = "marks_sum")
-    private Integer marksSum;
 
     @Transient
     private int facultyId;
@@ -56,23 +51,18 @@ public class RegistrationForFaculty {
     public RegistrationForFaculty() {
     }
 
-    public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks, MultipartFile filePhoto, MultipartFile fileDocument) throws IOException {
+    public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks)  {
         this.faculty = faculty;
         this.user = user;
         this.marks = marks;
-        this.uploadPhoto = Base64.getEncoder().encodeToString(filePhoto.getBytes());
-        this.uploadDocument = Base64.getEncoder().encodeToString(fileDocument.getBytes());
-        this.marksSum = marks.stream().reduce(0, Integer::sum);
     }
 
-    public RegistrationForFaculty(Integer id, Faculty faculty, User user, List<Integer> marks, MultipartFile filePhoto, MultipartFile fileDocument) throws IOException {
+    public RegistrationForFaculty(Integer id, Faculty faculty, User user, List<Integer> marks) {
         this.id = id;
         this.faculty = faculty;
         this.user = user;
         this.marks = marks;
-        this.uploadPhoto = Base64.getEncoder().encodeToString(filePhoto.getBytes());
-        this.uploadDocument = Base64.getEncoder().encodeToString(fileDocument.getBytes());
-        this.marksSum = marks.stream().reduce(0, Integer::sum);
+       // this.marksSum = marks.stream().reduce(0, Integer::sum);
     }
 
     public String getUploadDocument() {
@@ -89,14 +79,6 @@ public class RegistrationForFaculty {
 
     public void setUploadPhoto(String uploadFile) {
         this.uploadPhoto = uploadFile;
-    }
-
-    public Integer getMarksSum() {
-        return marksSum;
-    }
-
-    public void setMarksSum(Integer marksSum) {
-        this.marksSum = marksSum;
     }
 
     public Integer getId() {
