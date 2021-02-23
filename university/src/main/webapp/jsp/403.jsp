@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="security"
+		   uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +23,9 @@
 			<h3 class="w3-bar-item">Menu</h3>
 			<a href="/home" class="w3-bar-item w3-button">Home</a>
 			<a href="/show-entrants" class="w3-bar-item w3-button">All entrants</a>
-			<a href="/admin_panel" class="w3-bar-item w3-button">Admin Panel</a>
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+				<a href="/admin_panel" class="w3-bar-item w3-button">Admin Panel</a>
+			</security:authorize>
 			<a href="/login?logout" class="w3-bar-item w3-button">Logout</a>
 		</div>
 
