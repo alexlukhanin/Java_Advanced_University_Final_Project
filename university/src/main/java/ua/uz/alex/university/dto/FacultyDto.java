@@ -12,9 +12,7 @@ package ua.uz.alex.university.dto;
 
 import ua.uz.alex.university.domain.Subject;
 
-import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 
 public class FacultyDto {

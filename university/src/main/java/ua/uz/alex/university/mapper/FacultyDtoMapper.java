@@ -10,8 +10,6 @@
 
 package ua.uz.alex.university.mapper;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +17,6 @@ import ua.uz.alex.university.dao.SubjectRepository;
 import ua.uz.alex.university.domain.Faculty;
 import ua.uz.alex.university.domain.Subject;
 import ua.uz.alex.university.service.FileService;
-import ua.uz.alex.university.service.impl.FacultyServiceImpl;
 
 import java.io.IOException;
 import java.util.List;

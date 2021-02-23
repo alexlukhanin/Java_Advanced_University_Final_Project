@@ -1,3 +1,13 @@
+/**
+ * The Final project on "Java Developer" Course in LOGOS IT Academy
+ * University portal (Admissions Committee)
+ *
+ * Class ua.uz.alex.university.service.FileServiceImpl  - service layer
+ *
+ * @author Oleksandr Lukhanin
+ *
+ */
+
 package ua.uz.alex.university.service.impl;
 
 import org.slf4j.Logger;
@@ -12,7 +22,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import java.util.UUID;
 
 @Component
 public class FileServiceImpl implements FileService {

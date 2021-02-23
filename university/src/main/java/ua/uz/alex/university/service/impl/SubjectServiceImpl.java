@@ -1,3 +1,13 @@
+/**
+ * The Final project on "Java Developer" Course in LOGOS IT Academy
+ * University portal (Admissions Committee)
+ *
+ * Class ua.uz.alex.university.service.SubjectServiceImpl  - service layer
+ *
+ * @author Oleksandr Lukhanin
+ *
+ */
+
 package ua.uz.alex.university.service.impl;
 
 import org.slf4j.Logger;

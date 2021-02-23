@@ -2,11 +2,12 @@
  * The Final project on "Java Developer" Course in LOGOS IT Academy
  * University portal (Admissions Committee)
  *
- * Class ua.uz.alex.university.service.FacultyService  - service layer
+ * Class ua.uz.alex.university.service.FacultyServiceImpl  - service layer
  *
  * @author Oleksandr Lukhanin
  *
  */
+
 
 package ua.uz.alex.university.service.impl;
 

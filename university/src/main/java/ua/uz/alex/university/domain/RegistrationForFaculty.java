@@ -3,19 +3,14 @@
  * University portal (Admissions Committee)
  *
  * Class ua.uz.alex.university.domain.RegistrationForFaculty  - domain layer
- * @author Oleksandr Lukhanin
  *
+ * @author Oleksandr Lukhanin
  */
 
 package ua.uz.alex.university.domain;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.persistence.*;
-import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
-
 
 @Entity
 @Table(name = "faculty_registrations")
@@ -51,7 +46,7 @@ public class RegistrationForFaculty {
     public RegistrationForFaculty() {
     }
 
-    public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks)  {
+    public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks) {
         this.faculty = faculty;
         this.user = user;
         this.marks = marks;
@@ -62,7 +57,7 @@ public class RegistrationForFaculty {
         this.faculty = faculty;
         this.user = user;
         this.marks = marks;
-       // this.marksSum = marks.stream().reduce(0, Integer::sum);
+        // this.marksSum = marks.stream().reduce(0, Integer::sum);
     }
 
     public String getUploadDocument() {

@@ -2,7 +2,7 @@
  * The Final project on "Java Developer" Course in LOGOS IT Academy
  * University portal (Admissions Committee)
  * <p>
- * Interface ua.uz.alex.university.mapper.FacultyDtoMapper  - dto layer
+ * Interface ua.uz.alex.university.mapper.RegistrationForFacultyDtoMapper  - dto layer
  *
  * @author Oleksandr Lukhanin
  */
