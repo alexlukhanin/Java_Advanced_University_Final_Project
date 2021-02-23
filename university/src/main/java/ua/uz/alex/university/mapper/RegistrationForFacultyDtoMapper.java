@@ -40,9 +40,9 @@ public class RegistrationForFacultyDtoMapper {
         registrationForFaculty.setFaculty(faculty);
         registrationForFaculty.setUser(user);
         registrationForFaculty.setMarks(marks);
-        registrationForFaculty.setUploadPhoto(fileService.saveFile(filePhoto , user.getFirstName() +
+        registrationForFaculty.setUploadPhoto(fileService.saveFileAndReturnPathForDB(filePhoto , user.getFirstName() +
                 "_" + user.getLastName() + "_photo"));
-        registrationForFaculty.setUploadDocument(fileService.saveFile(fileDocument , user.getFirstName() +
+        registrationForFaculty.setUploadDocument(fileService.saveFileAndReturnPathForDB(fileDocument , user.getFirstName() +
                 "_" + user.getLastName() + "_document"));
 
       //  faculty.setLogoUrl(fileService.saveFile(filePhoto , user.getFirstName() + "_" + user.getLastName()));

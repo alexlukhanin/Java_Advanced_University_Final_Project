@@ -20,6 +20,7 @@ import ua.uz.alex.university.service.RegistrationForFacultyService;
 @Controller
 public class EntrantsController {
 
+
     @Autowired
     private RegistrationForFacultyService registrationForFacultyService;
 

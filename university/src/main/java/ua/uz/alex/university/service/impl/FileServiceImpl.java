@@ -1,5 +1,7 @@
 package ua.uz.alex.university.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import ua.uz.alex.university.service.FileService;
@@ -15,7 +17,9 @@ import java.util.UUID;
 @Component
 public class FileServiceImpl implements FileService {
 
-    public String saveFile(MultipartFile multipartFile , String filename) throws IOException {
+    private Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
+
+    public String saveFileAndReturnPathForDB(MultipartFile multipartFile , String filename) throws IOException {
 
         String pathStartPart =  "src/main/webapp/";
         String pathSecondPart = "imageDB/faculty/";
@@ -25,6 +29,8 @@ public class FileServiceImpl implements FileService {
         Path target = Paths.get(filePathToFileSystem);
         Files.createDirectories(target);
         Files.copy(multipartFile.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
+
+        logger.info("Save file and return path for DB {}: " + pathToDB);
         return pathToDB;
     }
 

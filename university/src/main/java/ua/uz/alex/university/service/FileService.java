@@ -13,6 +13,6 @@ import java.util.Date;
 
 public interface FileService {
 
-    public String saveFile(MultipartFile multipartFile , String filename) throws IOException;
+    public String saveFileAndReturnPathForDB(MultipartFile multipartFile , String filename) throws IOException;
 
 }
