@@ -34,12 +34,10 @@ public class RegistrationForFacultyDtoMapper {
                                                List<Integer> marks) throws IOException {
 
         RegistrationForFaculty registrationForFaculty = new RegistrationForFaculty();
-//        List<String> collect = subjects.stream().map(subject -> subject.getName()).collect(Collectors.toList());
-//        List<Subject> allByNameLike = subjectRepository.getAllByNameIn(collect);
-//        mapSubjects(subjects , allByNameLike);
         registrationForFaculty.setFaculty(faculty);
         registrationForFaculty.setUser(user);
         registrationForFaculty.setMarks(marks);
+
         registrationForFaculty.setUploadPhoto(fileService.saveFileAndReturnPathForDB(filePhoto , user.getFirstName() +
                 "_" + user.getLastName() + "_photo"));
         registrationForFaculty.setUploadDocument(fileService.saveFileAndReturnPathForDB(fileDocument , user.getFirstName() +

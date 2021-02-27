@@ -50,6 +50,7 @@
 					<th>Marks</th>
 					<th>Photo</th>
 					<th>Document</th>
+					<th>Sum of marks</th>
 				</tr>
 			</thead>
 			<tbody id="myTable">
@@ -68,6 +69,7 @@
 						<td><img
 								src="${currentRegistration.uploadDocument}"
 								alt="uploadPhoto" style="width: 50px"></td>
+						<td>${currentRegistration.sumMarks}</td>
 					</tr>
 				</c:forEach>
 

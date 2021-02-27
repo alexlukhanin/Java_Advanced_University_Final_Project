@@ -70,7 +70,7 @@ public class RegistrationForFacultyController {
         registrationForFaculty.setUser(user);
         RegistrationForFaculty entity = registrationForFacultyDtoMapper.createEntity(userPhoto,
                 documentPhoto, faculty, user, registrationForFaculty.getMarks());
-
+        entity.setSumMarks(registrationForFaculty.getMarks().stream().reduce(0, Integer::sum));
         registrationForFacultyService.save(entity);
         return new ModelAndView("redirect:/home");
     }

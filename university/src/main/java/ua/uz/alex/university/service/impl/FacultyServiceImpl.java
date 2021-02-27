@@ -42,4 +42,10 @@ public class FacultyServiceImpl implements FacultyService {
         logger.info("Find faculty by id (" + id + ")");
         return facultyRepository.findById(id).get();
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        logger.info("Delete faculty by id (" + id + ")");
+        facultyRepository.deleteById(id);
+    }
 }

@@ -33,6 +33,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/admin_panel").setViewName("admin_panel");
         registry.addViewController("/add_faculty").setViewName("add_faculty");
 
+
     }
 
     @Bean

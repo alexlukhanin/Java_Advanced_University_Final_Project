@@ -17,4 +17,5 @@ public interface FacultyService {
     public void save(Faculty faculty);
     public List<Faculty> getAllFaculties();
     public Faculty findById(Integer id);
+    public void deleteById(Integer id);
 }

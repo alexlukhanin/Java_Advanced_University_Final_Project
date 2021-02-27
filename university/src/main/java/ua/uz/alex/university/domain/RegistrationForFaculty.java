@@ -11,6 +11,7 @@ package ua.uz.alex.university.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "faculty_registrations")
@@ -37,6 +38,9 @@ public class RegistrationForFaculty {
     @Column(name = "upload_document")
     private String uploadDocument;
 
+    @Column
+    private Integer sumMarks;
+
     @Transient
     private int facultyId;
 
@@ -45,6 +49,8 @@ public class RegistrationForFaculty {
 
     public RegistrationForFaculty() {
     }
+
+
 
     public RegistrationForFaculty(Faculty faculty, User user, List<Integer> marks) {
         this.faculty = faculty;
@@ -124,31 +130,34 @@ public class RegistrationForFaculty {
         this.email = email;
     }
 
+    public Integer getSumMarks() {
+        return sumMarks;
+    }
+
+    public void setSumMarks(Integer sumMarks) {
+
+        this.sumMarks = sumMarks;
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         RegistrationForFaculty that = (RegistrationForFaculty) o;
-
-        if (facultyId != that.facultyId) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (faculty != null ? !faculty.equals(that.faculty) : that.faculty != null) return false;
-        if (user != null ? !user.equals(that.user) : that.user != null) return false;
-        if (marks != null ? !marks.equals(that.marks) : that.marks != null) return false;
-        return email != null ? email.equals(that.email) : that.email == null;
+        return facultyId == that.facultyId &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(faculty, that.faculty) &&
+                Objects.equals(user, that.user) &&
+                Objects.equals(marks, that.marks) &&
+                Objects.equals(uploadPhoto, that.uploadPhoto) &&
+                Objects.equals(uploadDocument, that.uploadDocument) &&
+                Objects.equals(sumMarks, that.sumMarks) &&
+                Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (faculty != null ? faculty.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (marks != null ? marks.hashCode() : 0);
-        result = 31 * result + facultyId;
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        return result;
+        return Objects.hash(id, faculty, user, marks, uploadPhoto, uploadDocument, sumMarks, facultyId, email);
     }
-
-
 }

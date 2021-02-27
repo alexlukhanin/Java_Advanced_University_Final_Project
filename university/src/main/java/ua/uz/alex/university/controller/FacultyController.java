@@ -14,9 +14,7 @@ package ua.uz.alex.university.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ua.uz.alex.university.dao.SubjectRepository;
@@ -67,6 +65,23 @@ public class FacultyController {
         model.addAttribute("faculties" , allFaculties);
         model.addAttribute("subjects" , subjectRepository.findAll());
         return "admin_panel";
+    }
+
+    @GetMapping("/admin_panel/{delete}/{id}")
+    public ModelAndView deleteFaculty(@PathVariable String delete, @PathVariable Integer id) {
+        if (delete.equals("delete")) {
+            facultyService.deleteById(id);
+            getFacultyItems();
+        }
+        //facultyService.deleteById(id);
+
+        return new ModelAndView("redirect:/admin_panel");
+    }
+
+    private ModelAndView getFacultyItems () {
+        ModelAndView mav = new ModelAndView("admin_panel");
+        mav.addObject("facultetItems", facultyService.getAllFaculties());
+        return mav;
     }
 
 
