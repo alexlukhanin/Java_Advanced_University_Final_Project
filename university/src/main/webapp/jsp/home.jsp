@@ -1,10 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="security"
            uri="http://www.springframework.org/security/tags"%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -21,26 +22,34 @@
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
+
+
+
 </head>
 <body>
 <div class="container">
 
     <!-- Sidebar -->
     <div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-        <h3 class="w3-bar-item">Menu</h3>
-        <a href="/home" class="w3-bar-item w3-button">Home</a>
-        <a href="/show-entrants" class="w3-bar-item w3-button">All entrants</a>
+        <h3 class="w3-bar-item"><spring:message code="menu.menu"/></h3>
+        <a href="/home" class="w3-bar-item w3-button"><spring:message code="menu.home"/></a>
+        <a href="/show-entrants" class="w3-bar-item w3-button"><spring:message code="menu.entrants"/></a>
         <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/admin_panel" class="w3-bar-item w3-button">Admin Panel</a>
+        <a href="/admin_panel" class="w3-bar-item w3-button"><spring:message code="menu.adminpanel"/></a>
         </security:authorize>
-        <a href="/login?logout" class="w3-bar-item w3-button">Logout</a>
+        <a href="/login?logout" class="w3-bar-item w3-button"><spring:message code="menu.logout"/></a>
+
     </div>
 
 
     <!-- Page Content -->
     <div style="margin-left: 10%">
         <div class="w3-container w3-orange w3-center"  >
-            <h1>Faculties</h1>
+
+            <h1><spring:message code="home.title"/></h1>
         </div>
 
         <div class="w3-container">
@@ -67,14 +76,14 @@
                                     alt="Faculty logo" style="width: 100%">
                             <div class="w3-container w3-center">
                                 <h3>${currentFaculty.name}</h3>
-                                <p>Number of students recruited:
+                                <p><spring:message code="home.number_students"/>:
                                         ${currentFaculty.numberOfStudents}</p>
-                                <p>Necessary subjects for entry: ${currentFaculty.subjects}</p>
+                                <p><spring:message code="home.necessary_subjects"/>: ${currentFaculty.subjects}</p>
                             </div>
                             <security:authorize access="hasRole('ROLE_USER')">
                                  <a class="w3-button w3-block w3-dark-grey"
                                  href="${contextPath}/faculty_reg?facultyId=${currentFaculty.id}&email=${pageContext.request.userPrincipal.name}">
-                                Register</a>
+                                     <spring:message code="home.register"/></a>
                             </security:authorize>
 
                         </div>
@@ -87,7 +96,6 @@
 
 </div>
 <!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security"
@@ -19,23 +19,26 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-		<h3 class="w3-bar-item">Menu</h3>
-		<a href="/home" class="w3-bar-item w3-button">Home</a>
-		<a href="/show-entrants" class="w3-bar-item w3-button">All entrants</a>
+		<h3 class="w3-bar-item"><spring:message code="menu.menu"/></h3>
+		<a href="/home" class="w3-bar-item w3-button"><spring:message code="menu.home"/></a>
+		<a href="/show-entrants" class="w3-bar-item w3-button"><spring:message code="menu.entrants"/></a>
 		<security:authorize access="hasRole('ROLE_ADMIN')">
-			<a href="/admin_panel" class="w3-bar-item w3-button">Admin Panel</a>
+			<a href="/admin_panel" class="w3-bar-item w3-button"><spring:message code="menu.adminpanel"/></a>
 		</security:authorize>
-		<a href="/login?logout" class="w3-bar-item w3-button">Logout</a>
+		<a href="/login?logout" class="w3-bar-item w3-button"><spring:message code="menu.logout"/></a>
+
 	</div>
 
 	<!-- Page Content -->
 	<div class="container mt-3" style="margin-left: 10%">
 		<div class="w3-container w3-orange w3-center">
-			<h1>Registered entrants</h1>
+			<h1><spring:message code="entrants"/></h1>
 		</div>
 
 		<input class="form-control" id="myInput" type="text"
@@ -43,14 +46,14 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Faculty</th>
-					<th>First name</th>
-					<th>Last name</th>
-					<th>Email</th>
-					<th>Marks</th>
-					<th>Photo</th>
-					<th>Document</th>
-					<th>Sum of marks</th>
+					<th><spring:message code="faculty"/></th>
+					<th><spring:message code="first_name"/></th>
+					<th><spring:message code="last_name"/></th>
+					<th><spring:message code="email"/></th>
+					<th><spring:message code="marks"/></th>
+					<th><spring:message code="photo"/></th>
+					<th><spring:message code="document"/></th>
+					<th><spring:message code="sum_marks"/></th>
 				</tr>
 			</thead>
 			<tbody id="myTable">
@@ -78,16 +81,7 @@
 
 	</div>
 
-	<script>
-		$(document).ready(function () {
-			$("#myInput").on("keyup", function () {
-				var value = $(this).val().toLowerCase();
-				$("#myTable tr").filter(function () {
-					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
-			});
-		});
-	</script>
+	<script src="js/table.js"></script>
 
 </body>
 </html>

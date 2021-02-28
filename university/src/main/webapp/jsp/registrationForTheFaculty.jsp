@@ -3,28 +3,34 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="security"
 		   uri="http://www.springframework.org/security/tags"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Student registration for the faculty</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <body>
-	<div class="container">
+<div class="container">
 
-		<!-- Sidebar -->
-		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-			<h3 class="w3-bar-item">Menu</h3>
-			<a href="/home" class="w3-bar-item w3-button">Home</a>
-			<a href="/show-entrants" class="w3-bar-item w3-button">All entrants</a>
-			<security:authorize access="hasRole('ROLE_ADMIN')">
-				<a href="/admin_panel" class="w3-bar-item w3-button">Admin Panel</a>
-			</security:authorize>
-			<a href="/login?logout" class="w3-bar-item w3-button">Logout</a>
-		</div>
+	<!-- Sidebar -->
+	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
+		<h3 class="w3-bar-item"><spring:message code="menu.menu"/></h3>
+		<a href="/home" class="w3-bar-item w3-button"><spring:message code="menu.home"/></a>
+		<a href="/show-entrants" class="w3-bar-item w3-button"><spring:message code="menu.entrants"/></a>
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+			<a href="/admin_panel" class="w3-bar-item w3-button"><spring:message code="menu.adminpanel"/></a>
+		</security:authorize>
+		<a href="/login?logout" class="w3-bar-item w3-button"><spring:message code="menu.logout"/></a>
+
+	</div>
 
 		<!-- Page Content -->
 
@@ -91,9 +97,7 @@
 
 	</div>
 	<!-- /container -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
