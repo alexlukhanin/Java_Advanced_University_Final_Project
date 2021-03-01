@@ -19,6 +19,7 @@ import ua.uz.alex.university.domain.Subject;
 import ua.uz.alex.university.service.SubjectService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
@@ -27,18 +28,18 @@ public class SubjectServiceImpl implements SubjectService {
     @Autowired
     private SubjectRepository subjectRepository;
 
-    public void save(Subject subject) {
+    public Subject save(Subject subject) {
         logger.info("Create(save) subject{}: " + subject);
-        subjectRepository.save(subject);
+        return subjectRepository.save(subject);
     }
 
-    public List<Subject> getAllFaculties() {
+    public List<Subject> findAll() {
         logger.info("Get all faculties(List)");
         return subjectRepository.findAll();
     }
 
-    public Subject findById(Integer id) {
+    public Optional<Subject> findById(Integer id) {
         logger.info("Find subject{} by id (" + id + ")");
-        return subjectRepository.findById(id).get();
+        return subjectRepository.findById(id);
     }
 }

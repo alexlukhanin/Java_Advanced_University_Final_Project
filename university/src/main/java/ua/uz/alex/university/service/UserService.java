@@ -12,7 +12,14 @@ package ua.uz.alex.university.service;
 
 import ua.uz.alex.university.domain.User;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface UserService{
-    public void save(User user) ;
-    public User findByEmail(String email);
+    public User save(User user) ;
+    public Optional<User> findByEmail(String email);
+    public Optional<User> findById(Integer id);
+    public List<User> findAll();
+    public void deleteById(Integer id);
+
 }

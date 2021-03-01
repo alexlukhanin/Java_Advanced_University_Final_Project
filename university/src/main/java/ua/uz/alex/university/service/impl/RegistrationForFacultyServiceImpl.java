@@ -27,10 +27,10 @@ public class RegistrationForFacultyServiceImpl implements RegistrationForFaculty
     @Autowired
     private RegistrationForFacultyRepository registrationForFacultyRepository;
 
-    public void save(RegistrationForFaculty facultyRegistration) {
+    public RegistrationForFaculty save(RegistrationForFaculty facultyRegistration) {
 
         logger.info("Create new registration for faculty{}: " + facultyRegistration);
-        registrationForFacultyRepository.save(facultyRegistration);
+        return registrationForFacultyRepository.save(facultyRegistration);
     }
 
     public List<RegistrationForFaculty> showAllEntrants() {

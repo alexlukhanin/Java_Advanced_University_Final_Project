@@ -15,6 +15,6 @@ import java.util.List;
 
 public interface RegistrationForFacultyService {
 
-    public void save(RegistrationForFaculty facultyRegistration);
+    public RegistrationForFaculty save(RegistrationForFaculty facultyRegistration);
     public List<RegistrationForFaculty> showAllEntrants();
 }

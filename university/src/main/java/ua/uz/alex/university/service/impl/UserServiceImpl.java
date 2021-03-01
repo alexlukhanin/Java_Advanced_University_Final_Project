@@ -20,6 +20,9 @@ import ua.uz.alex.university.domain.User;
 import ua.uz.alex.university.domain.UserRole;
 import ua.uz.alex.university.service.UserService;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
     private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -31,17 +34,35 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder bCryptPasswordEncoder;
 
 
-    public void save(User user) {
+    public User save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
+      //  user.setPassword(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
         user.setRole(UserRole.ROLE_USER);
         logger.info("Create(save) new user{}: " + user);
-        userRepository.save(user);
+
+        return userRepository.save(user);
     }
 
-    public User findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         logger.info("Find user{} by email (" + email + ")");
-        return userRepository.findByEmail(email).get();
+        return userRepository.findByEmail(email);
     }
+
+    @Override
+    public Optional<User> findById(Integer id) {
+        logger.info("Find user by id (" + id + ")");
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        userRepository.deleteById(id);
+    }
+
 
 }
