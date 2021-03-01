@@ -33,33 +33,7 @@ public class UniversityApplicationTests {
 
 
 	@Test
-	public void isUserSaveToDataBase() {
-
-//		List<User> users = userRepository.findAll();
-//		int usersSize = users.size();
-//		assertThat(users, hasSize(usersSize));
-//
-//		User user = new User();
-//		user.setEmail("11@gmail.com");
-//		user.setFirstName("name");
-//		user.setLastName("surname1");
-//		user.setPassword("11");
-//		user.setPasswordConfirm("11");
-//		user.setRole(UserRole.ROLE_USER);
-//
-//		userService.save(user);
-//
-//		users = userRepository.findAll();
-//		assertThat(users, hasSize(usersSize + 1));
-
-//		User userFromDb = users.get(0);
-//		assertTrue(userFromDb.getEmail().equals(user.getEmail()));
-//		assertTrue(userFromDb.getFirstName().equals(user.getFirstName()));
-//		assertTrue(userFromDb.getLastName().equals(user.getLastName()));
-//		assertTrue(userFromDb.getRole().equals(user.getRole()));
-
-
-
+	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
 	}
 
 
